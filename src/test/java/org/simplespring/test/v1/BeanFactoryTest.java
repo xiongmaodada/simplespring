@@ -1,12 +1,13 @@
 package org.simplespring.test.v1;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.simplespring.beans.BeanDefinition;
 import org.simplespring.beans.factory.BeanCreationException;
 import org.simplespring.beans.factory.BeanDefinitionStoreException;
-import org.simplespring.beans.factory.BeanFactory;
 import org.simplespring.beans.factory.support.DefaltBeanFactory;
+import org.simplespring.beans.factory.xml.XmlBeanDefinitionReader;
 import org.simplespring.service.v1.PetStoreService;
 
 import static org.junit.Assert.assertEquals;
@@ -17,10 +18,19 @@ import static org.junit.Assert.assertNotNull;
  */
 public class BeanFactoryTest {
 
+    DefaltBeanFactory factory = null;
+    XmlBeanDefinitionReader reader = null;
+
+    @Before
+    public void setUP(){
+        factory = new DefaltBeanFactory();
+        reader = new XmlBeanDefinitionReader(factory);
+    }
+
     @Test
     public void testGetBean() throws Exception {
 
-        BeanFactory factory = new DefaltBeanFactory("petstore-v1.xml");
+        reader.loadBeanDefinitions("petstore-v1.xml");
 
         BeanDefinition bd = factory.getBeanDefinition("petStore");
 
@@ -34,7 +44,7 @@ public class BeanFactoryTest {
     @Test
     public void testInvalidBean(){
 
-        BeanFactory factory = new DefaltBeanFactory("petstore-v1.xml");
+        reader.loadBeanDefinitions("petstore-v1.xml");
         try{
             factory.getBean("invalidBean");
         }catch(BeanCreationException e){
@@ -45,7 +55,7 @@ public class BeanFactoryTest {
     @Test
     public void testInvalidXML(){
         try{
-            new DefaltBeanFactory("xxxx.xml");
+            reader.loadBeanDefinitions("xxxx.xml");
         }catch(BeanDefinitionStoreException e){
             return;
         }
