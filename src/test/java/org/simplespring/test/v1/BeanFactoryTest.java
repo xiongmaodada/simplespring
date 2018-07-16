@@ -6,7 +6,7 @@ import org.simplespring.beans.BeanDefinition;
 import org.simplespring.beans.factory.BeanCreationException;
 import org.simplespring.beans.factory.BeanDefinitionStoreException;
 import org.simplespring.beans.factory.BeanFactory;
-import org.simplespring.factory.beans.support.DefaltBeanFactory;
+import org.simplespring.beans.factory.support.DefaltBeanFactory;
 import org.simplespring.service.v1.PetStoreService;
 
 import static org.junit.Assert.assertEquals;

@@ -1,4 +1,4 @@
-package org.simplespring.factory.beans.support;
+package org.simplespring.beans.factory.support;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
