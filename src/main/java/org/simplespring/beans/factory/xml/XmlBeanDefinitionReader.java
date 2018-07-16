@@ -7,6 +7,7 @@ import org.simplespring.beans.BeanDefinition;
 import org.simplespring.beans.factory.BeanDefinitionStoreException;
 import org.simplespring.beans.factory.support.BeanDefinitionRegistry;
 import org.simplespring.beans.factory.support.GenericBeanDefinition;
+import org.simplespring.core.io.Resource;
 import org.simplespring.util.ClassUtils;
 
 import java.io.IOException;
@@ -28,11 +29,11 @@ public class XmlBeanDefinitionReader {
         this.registry = registry;
     }
 
-    public void loadBeanDefinitions(String configFile) {
+    public void loadBeanDefinitions(Resource resources) {
         InputStream is = null;
         try{
             ClassLoader cl = ClassUtils.getDefaultClassLoader();
-            is = cl.getResourceAsStream(configFile);
+            is = resources.getInputStream();
             SAXReader reader = new SAXReader();
             Document doc = reader.read(is);
 
@@ -46,7 +47,7 @@ public class XmlBeanDefinitionReader {
                 this.registry.registerBeanDefinition(id, bd);
             }
         } catch (Exception e) {
-            throw new BeanDefinitionStoreException("IOException parsing XML document from " + configFile,e);
+            throw new BeanDefinitionStoreException("IOException parsing XML document from " + resources.getDescription(),e);
         }finally{
             if(is != null){
                 try {

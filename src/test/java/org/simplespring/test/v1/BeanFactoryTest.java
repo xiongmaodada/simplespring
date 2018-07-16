@@ -8,6 +8,7 @@ import org.simplespring.beans.factory.BeanCreationException;
 import org.simplespring.beans.factory.BeanDefinitionStoreException;
 import org.simplespring.beans.factory.support.DefaltBeanFactory;
 import org.simplespring.beans.factory.xml.XmlBeanDefinitionReader;
+import org.simplespring.core.io.ClassPathResource;
 import org.simplespring.service.v1.PetStoreService;
 
 import static org.junit.Assert.assertEquals;
@@ -30,7 +31,7 @@ public class BeanFactoryTest {
     @Test
     public void testGetBean() throws Exception {
 
-        reader.loadBeanDefinitions("petstore-v1.xml");
+        reader.loadBeanDefinitions(new ClassPathResource("petstore-v1.xml"));
 
         BeanDefinition bd = factory.getBeanDefinition("petStore");
 
@@ -44,7 +45,7 @@ public class BeanFactoryTest {
     @Test
     public void testInvalidBean(){
 
-        reader.loadBeanDefinitions("petstore-v1.xml");
+        reader.loadBeanDefinitions(new ClassPathResource("petstore-v1.xml"));
         try{
             factory.getBean("invalidBean");
         }catch(BeanCreationException e){
@@ -55,7 +56,7 @@ public class BeanFactoryTest {
     @Test
     public void testInvalidXML(){
         try{
-            reader.loadBeanDefinitions("xxxx.xml");
+            reader.loadBeanDefinitions(new ClassPathResource("xxxx.xml"));
         }catch(BeanDefinitionStoreException e){
             return;
         }
