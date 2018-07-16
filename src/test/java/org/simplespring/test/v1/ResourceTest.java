@@ -3,7 +3,6 @@ package org.simplespring.test.v1;
 import org.junit.Assert;
 import org.junit.Test;
 import org.simplespring.core.io.ClassPathResource;
-import org.simplespring.core.io.FileSystemResource;
 import org.simplespring.core.io.Resource;
 
 import java.io.InputStream;
@@ -30,7 +29,7 @@ public class ResourceTest {
     @Test
     public void testFileSystemResource() throws Exception {
 
-		Resource r = new FileSystemResource("C:\\Users\\xuexuxu\\Desktop\\petstore-v1.xml");
+		/*Resource r = new FileSystemResource("C:\\Users\\xuexuxu\\Desktop\\petstore-v1.xml");
 
 		InputStream is = null;
 
@@ -42,7 +41,7 @@ public class ResourceTest {
 			if (is != null) {
 				is.close();
 			}
-		}
+		}*/
 
     }
 }

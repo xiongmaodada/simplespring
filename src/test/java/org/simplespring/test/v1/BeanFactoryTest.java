@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.simplespring.beans.BeanDefinition;
 import org.simplespring.beans.factory.BeanCreationException;
 import org.simplespring.beans.factory.BeanDefinitionStoreException;
-import org.simplespring.beans.factory.support.DefaltBeanFactory;
+import org.simplespring.beans.factory.support.DefaultBeanFactory;
 import org.simplespring.beans.factory.xml.XmlBeanDefinitionReader;
 import org.simplespring.core.io.ClassPathResource;
 import org.simplespring.service.v1.PetStoreService;
@@ -19,12 +19,12 @@ import static org.junit.Assert.assertNotNull;
  */
 public class BeanFactoryTest {
 
-    DefaltBeanFactory factory = null;
+    DefaultBeanFactory factory = null;
     XmlBeanDefinitionReader reader = null;
 
     @Before
     public void setUP(){
-        factory = new DefaltBeanFactory();
+        factory = new DefaultBeanFactory();
         reader = new XmlBeanDefinitionReader(factory);
     }
 
